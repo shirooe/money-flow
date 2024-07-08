@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "github.com/shirooe/gomf/api/auth;auth";
+
+import "google/protobuf/empty.proto";
+
+service Auth {
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc Register(RegisterRequest) returns (RegisterResponse) {}
+}
+
+service AuthProtected {
+  rpc Logout(LogoutRequest) returns (google.protobuf.Empty) {}
+  
+  rpc AccessToken(AccessTokenRequest) returns (AccessTokenResponse) {}
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message RegisterRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message RegisterResponse {
+  string token = 1;
+}
+
+// protected routes
+
+message AccessTokenRequest {
+  string access_token = 1;
+}
+
+message AccessTokenResponse {
+  string access_token = 1;
+}
+
+message RefreshTokenRequest {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message RefreshTokenResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}

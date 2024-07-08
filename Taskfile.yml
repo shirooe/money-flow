@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+  protoc:
+    cmds:
+      - for: [auth, account]
+        task: generate
+        vars: 
+          file: '{{.file}}'
+  generate:
+    vars:
+      out_path: apps/{{.file}}/pkg
+      proto_path: libs/api/{{.file}}
+    cmds:
+      - mkdir -p {{.out_path}}/api
+      - protoc --proto_path {{.proto_path}}
+        --go_out={{.out_path}}/api --go_opt=paths=source_relative
+        --go-grpc_out={{.out_path}}/api --go-grpc_opt=paths=source_relative
+        {{.proto_path}}/{{.file}}.proto    
