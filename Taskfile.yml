@@ -5,8 +5,9 @@ tasks:
     cmds:
       - for: [auth, account]
         task: generate
-        vars: 
-          file: '{{.file}}'
+        vars:
+          file: '{{.ITEM}}'
+  
   generate:
     vars:
       out_path: apps/{{.file}}/pkg
