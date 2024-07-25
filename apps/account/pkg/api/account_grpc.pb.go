@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v5.27.2
-// source: account.proto
+// source: libs/api/account/account.proto
 
-package account
+package api
 
 import (
 	grpc "google.golang.org/grpc"
@@ -61,5 +61,5 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AccountServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams:     []grpc.StreamDesc{},
-	Metadata:    "account.proto",
+	Metadata:    "libs/api/account/account.proto",
 }

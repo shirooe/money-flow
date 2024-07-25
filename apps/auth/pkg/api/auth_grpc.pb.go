@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v5.27.2
-// source: auth.proto
+// source: libs/api/auth/auth.proto
 
-package auth
+package api
 
 import (
 	context "context"
@@ -138,7 +138,7 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "auth.proto",
+	Metadata: "libs/api/auth/auth.proto",
 }
 
 // AuthProtectedClient is the client API for AuthProtected service.
@@ -296,5 +296,5 @@ var AuthProtected_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "auth.proto",
+	Metadata: "libs/api/auth/auth.proto",
 }
