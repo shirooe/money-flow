@@ -40,7 +40,7 @@ type SQLExecer interface {
 
 type NamedExecer interface {
 	ScanOneContext(ctx context.Context, dest interface{}, query Query, args ...interface{}) error
-	ScanAllContext(ctx context.Context, dest interface{}, query Query, ards ...interface{}) error
+	ScanAllContext(ctx context.Context, dest interface{}, query Query, args ...interface{}) error
 	ScanRowContext(ctx context.Context, dest interface{}, query Query, args ...interface{}) error
 }
 
