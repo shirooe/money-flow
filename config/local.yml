@@ -1,7 +1,7 @@
 auth:
   server_port: 50051
 
-database:
+auth-database:
   host: localhost
   port: 5432
   sslmode: disable
