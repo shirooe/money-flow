@@ -13,7 +13,7 @@ type Client struct {
 	db     DB
 }
 
-func NewClient(ctx context.Context, config Config, logger *zap.Logger) (*Client, error) {
+func ProvideClient(ctx context.Context, config Config, logger *zap.Logger) (*Client, error) {
 	conn, err := pgxpool.New(ctx, config.DSN())
 
 	if err != nil {

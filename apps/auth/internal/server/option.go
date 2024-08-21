@@ -12,7 +12,7 @@ type Option struct {
 	Options []grpc.ServerOption
 }
 
-func NewOption(
+func ProvideOption(
 // interceptors []grpc.UnaryServerInterceptor,
 // credentials credentials.TransportCredentials
 ) Option {

@@ -14,10 +14,10 @@ type Config struct {
 	SSLMode string `yaml:"sslmode"`
 }
 
-func NewConfig(provider *config.YAML, log *zap.Logger, service string) Config {
+func ProvideConfig(provider *config.YAML, log *zap.Logger) Config {
 	var config Config
 
-	if err := provider.Get(fmt.Sprintf("%s-database", service)).Populate(&config); err != nil {
+	if err := provider.Get("database").Populate(&config); err != nil {
 		log.Error(err.Error())
 	}
 

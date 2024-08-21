@@ -13,10 +13,8 @@ import (
 
 func New() *fx.App {
 	return fx.New(
-		fx.Provide(func() context.Context {
-			return context.Background()
-		}),
+		fx.Provide(func() context.Context { return context.Background() }),
 		fx.Provide(config.New, zap.NewDevelopment),
-		fx.Options(postgres.Module("auth"), server.Module()),
+		fx.Options(postgres.Module(), server.Module()),
 	)
 }

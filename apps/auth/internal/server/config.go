@@ -6,13 +6,13 @@ import (
 )
 
 type Config struct {
-	ServerPort int `yaml:"server_port"`
+	Port int `yaml:"port"`
 }
 
-func NewConfig(provider *config.YAML, log *zap.Logger) Config {
+func ProvideConfig(provider *config.YAML, log *zap.Logger) Config {
 	var config Config
 
-	if err := provider.Get("auth").Populate(&config); err != nil {
+	if err := provider.Get("server").Populate(&config); err != nil {
 		log.Sugar().Errorf("failed to get config: %v", err)
 		return config
 	}

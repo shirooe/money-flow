@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -17,12 +18,7 @@ func New() *config.YAML {
 		log.Fatal(err)
 	}
 
-	path := os.Getenv("CONFIG_PATH")
-	if path == "" {
-		log.Fatal("Config path is not set or dotenv file not found")
-	}
-
-	provider, err := config.NewYAML(config.File(filepath.Join(root, path)))
+	provider, err := config.NewYAML(config.File(filepath.Join(root, fmt.Sprintf("config/%s.yml", filepath.Base(pwd)))))
 	if err != nil {
 		log.Fatal(err)
 	}
