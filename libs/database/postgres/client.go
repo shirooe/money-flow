@@ -2,18 +2,18 @@ package postgres
 
 import (
 	"context"
+	"log/slog"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"go.uber.org/zap"
 )
 
 type Client struct {
-	logger zap.Logger
+	logger *slog.Logger
 	config Config
 	db     DB
 }
 
-func ProvideClient(ctx context.Context, config Config, logger *zap.Logger) (*Client, error) {
+func ProvideClient(ctx context.Context, config Config, log *slog.Logger) (*Client, error) {
 	conn, err := pgxpool.New(ctx, config.DSN())
 
 	if err != nil {
@@ -21,9 +21,9 @@ func ProvideClient(ctx context.Context, config Config, logger *zap.Logger) (*Cli
 	}
 
 	return &Client{
-		logger: *logger,
+		logger: log,
 		config: config,
-		db:     pg(conn, logger),
+		db:     pg(conn, log),
 	}, nil
 }
 
