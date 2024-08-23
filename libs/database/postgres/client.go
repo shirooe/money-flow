@@ -2,18 +2,18 @@ package postgres
 
 import (
 	"context"
-	"log/slog"
 
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/shirooe/gomf/libs/logger"
 )
 
 type Client struct {
-	logger *slog.Logger
+	logger *logger.Logger
 	config Config
 	db     DB
 }
 
-func ProvideClient(ctx context.Context, config Config, log *slog.Logger) (*Client, error) {
+func ProvideClient(ctx context.Context, config Config, log *logger.Logger) (*Client, error) {
 	conn, err := pgxpool.New(ctx, config.DSN())
 
 	if err != nil {

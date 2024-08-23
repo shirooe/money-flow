@@ -2,22 +2,22 @@ package postgres
 
 import (
 	"context"
-	"log/slog"
 
 	"github.com/georgysavva/scany/v2/pgxscan"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/shirooe/gomf/libs/logger"
 )
 
 var _ DB = (*postgres)(nil)
 
 type postgres struct {
 	pool   *pgxpool.Pool
-	logger *slog.Logger
+	logger *logger.Logger
 }
 
-func pg(conn *pgxpool.Pool, logger *slog.Logger) *postgres {
+func pg(conn *pgxpool.Pool, logger *logger.Logger) *postgres {
 	return &postgres{
 		pool:   conn,
 		logger: logger,
@@ -40,7 +40,7 @@ func (p *postgres) Close() error {
 func (p *postgres) ScanOneContext(ctx context.Context, dest interface{}, query Query, args ...interface{}) error {
 	rows, err := p.QueryContext(ctx, query, args...)
 	if err != nil {
-		p.logger.Error("failed to query", slog.Any("error", err))
+		p.logger.Errorf("failed to query %v", err)
 		return err
 	}
 	return pgxscan.ScanOne(dest, rows)
@@ -49,7 +49,7 @@ func (p *postgres) ScanOneContext(ctx context.Context, dest interface{}, query Q
 func (p *postgres) ScanAllContext(ctx context.Context, dest interface{}, query Query, args ...interface{}) error {
 	rows, err := p.QueryContext(ctx, query, args...)
 	if err != nil {
-		p.logger.Error("failed to query", slog.Any("error", err))
+		p.logger.Errorf("failed to query %v", err)
 		return err
 	}
 	return pgxscan.ScanAll(dest, rows)
@@ -58,7 +58,7 @@ func (p *postgres) ScanAllContext(ctx context.Context, dest interface{}, query Q
 func (p *postgres) ScanRowContext(ctx context.Context, dest interface{}, query Query, args ...interface{}) error {
 	rows, err := p.QueryContext(ctx, query, args...)
 	if err != nil {
-		p.logger.Error("failed to query", slog.Any("error", err))
+		p.logger.Errorf("failed to query %v", err)
 		return err
 	}
 	return pgxscan.ScanRow(dest, rows)

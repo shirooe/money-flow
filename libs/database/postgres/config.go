@@ -2,9 +2,9 @@ package postgres
 
 import (
 	"fmt"
-	"log/slog"
 	"os"
 
+	"github.com/shirooe/gomf/libs/logger"
 	"go.uber.org/config"
 )
 
@@ -14,11 +14,11 @@ type Config struct {
 	SSLMode string `yaml:"sslmode"`
 }
 
-func ProvideConfig(provider *config.YAML, log *slog.Logger) Config {
+func ProvideConfig(provider *config.YAML, log *logger.Logger) Config {
 	var config Config
 
 	if err := provider.Get("database").Populate(&config); err != nil {
-		log.Error("failed to load config", slog.Any("error", err))
+		log.Errorf("failed to load config %v", err)
 	}
 
 	return config
