@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/shirooe/gomf/libs/logger"
+	"github.com/rs/zerolog"
 	"go.uber.org/config"
 )
 
@@ -14,11 +14,11 @@ type Config struct {
 	SSLMode string `yaml:"sslmode"`
 }
 
-func ProvideConfig(provider *config.YAML, log *logger.Logger) Config {
+func ProvideConfig(provider *config.YAML, log *zerolog.Logger) Config {
 	var config Config
 
 	if err := provider.Get("database").Populate(&config); err != nil {
-		log.Errorf("failed to load config %v", err)
+		log.Error().Msgf("failed to load config %v", err)
 	}
 
 	return config

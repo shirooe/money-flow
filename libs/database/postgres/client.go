@@ -4,16 +4,16 @@ import (
 	"context"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/shirooe/gomf/libs/logger"
+	"github.com/rs/zerolog"
 )
 
 type Client struct {
-	logger *logger.Logger
+	logger *zerolog.Logger
 	config Config
 	db     DB
 }
 
-func ProvideClient(ctx context.Context, config Config, log *logger.Logger) (*Client, error) {
+func ProvideClient(ctx context.Context, config Config, log *zerolog.Logger) (*Client, error) {
 	conn, err := pgxpool.New(ctx, config.DSN())
 
 	if err != nil {
