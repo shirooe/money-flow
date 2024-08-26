@@ -1,0 +1,66 @@
+run:
+  timeout: "2m"
+  tests: false
+  allow-parallel-runners: false
+  go: "1.22"
+  concurrency: 3
+
+output:
+  print-issued-lines: true
+  print-linter-name: true
+  uniq-by-line: true
+  sort-results: true
+  formats:
+    - format: colored-line-number
+
+linters-settings:
+  decorder:
+    disable-init-func-first-check: true
+    dec-order:
+      - const
+      - type
+      - var
+      - func
+  dupl:
+    threshold: 100
+  exhaustive:
+    default-signifies-exhaustive: true
+  errcheck:
+    check-blank: true
+  funlen:
+    lines: 70
+    statements: -1
+    ignore-comments: true
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  lll:
+    tab-width: 1
+    line-length: 120
+
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - canonicalheader
+    - contextcheck
+    - cyclop
+    - decorder
+    - dupl
+    - durationcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustive
+    - forcetypeassert
+    - funlen
+    - gocheckcompilerdirectives
+    - gochecknoglobals
+    - gocognit
+    - goconst
+    - gosec
+    - govet
+    - lll
+    - whitespace
+    - zerologlint
+  fast: true
