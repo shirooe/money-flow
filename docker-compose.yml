@@ -6,6 +6,7 @@ services:
     ports:
       - "5432:5432" 
     environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -15,5 +16,18 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
-      - ./data/postgres:/var/lib/postgresql/log
+      - pgsql:/var/lib/postgresql/data
+      - pgsql:/var/lib/postgresql/log
+
+  nocodb:
+    container_name: nocodb
+    image: nocodb/nocodb:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    volumes:
+      - nocodb:/var/lib/nocodb/data
+
+volumes:
+  pgsql:
+  nocodb:
