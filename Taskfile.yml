@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 vars:
   repo: github.com/shirooe/gomf
@@ -11,4 +11,23 @@ tasks:
         --go_out=. --go_opt=module={{.repo}}
         --go-grpc_out=. --go-grpc_opt=module={{.repo}}
   lint:
+    desc: Lint Go code
     cmd: golangci-lint run ./... -c .golangci.yml
+
+  migration-create:
+    desc: Create migration files from args
+    cmd: migrate create -ext sql -dir apps/{{.dir}}/migrations -tz UTC {{.name}}
+    requires:
+      vars: ["dir", "name"]
+
+  migration-up:
+    desc: Run migrations
+    cmd: migrate -path apps/{{.dir}}/migrations -database {{.db}} up
+    requires:
+      vars: ["dir", "db"]
+
+  migration-down:
+    desc: Run migrations
+    cmd: migrate -path apps/{{.dir}}/migrations -database {{.db}} down
+    requires:
+      vars: ["dir", "db"]
