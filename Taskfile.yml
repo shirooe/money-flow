@@ -3,6 +3,9 @@ version: "3"
 vars:
   repo: github.com/shirooe/money-flow
 
+dotenv:
+  - .env
+
 tasks:
   protoc:
     desc: Generate Go code from .proto files
@@ -22,12 +25,14 @@ tasks:
 
   migration-up:
     desc: Run migrations
-    cmd: migrate -path apps/{{.dir}}/migrations -database {{.db}} up
+    cmd: migrate -path apps/{{.dir}}/migrations
+      -database "postgres://{{.POSTGRES_USER}}@localhost:5432/{{.POSTGRES_DB}}?sslmode=disable" up
     requires:
-      vars: ["dir", "db"]
+      vars: ["dir"]
 
   migration-down:
     desc: Run migrations
-    cmd: migrate -path apps/{{.dir}}/migrations -database {{.db}} down
+    cmd: migrate -path apps/{{.dir}}/migrations
+      -database "postgres://{{.POSTGRES_USER}}@localhost:5432/{{.POSTGRES_DB}}?sslmode=disable" down
     requires:
-      vars: ["dir", "db"]
+      vars: ["dir"]
