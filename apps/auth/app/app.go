@@ -5,10 +5,10 @@ import (
 
 	"go.uber.org/fx"
 
-	"github.com/shirooe/gomf/apps/auth/internal/server"
-	"github.com/shirooe/gomf/libs/config"
-	"github.com/shirooe/gomf/libs/database/postgres"
-	"github.com/shirooe/gomf/libs/logger"
+	"github.com/shirooe/money-flow/apps/auth/internal/server"
+	"github.com/shirooe/money-flow/libs/config"
+	"github.com/shirooe/money-flow/libs/database/postgres"
+	"github.com/shirooe/money-flow/libs/logger"
 )
 
 func New() *fx.App {

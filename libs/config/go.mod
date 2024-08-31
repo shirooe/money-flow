@@ -1,4 +1,4 @@
-module github.com/shirooe/gomf/libs/config
+module github.com/shirooe/money-flow/libs/config
 
 go 1.22.4
 

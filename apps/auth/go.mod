@@ -1,4 +1,4 @@
-module github.com/shirooe/gomf/apps/auth
+module github.com/shirooe/money-flow/apps/auth
 
 go 1.22.4
 

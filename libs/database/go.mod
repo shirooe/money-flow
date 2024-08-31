@@ -1,4 +1,4 @@
-module github.com/shirooe/gomf/libs/database
+module github.com/shirooe/money-flow/libs/database
 
 go 1.22.5
 

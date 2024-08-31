@@ -1,6 +1,6 @@
 package main
 
-import "github.com/shirooe/gomf/apps/auth/app"
+import "github.com/shirooe/money-flow/apps/auth/app"
 
 func main() {
 	app.New().Run()

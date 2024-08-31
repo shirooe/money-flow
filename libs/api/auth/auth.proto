@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package auth;
-option go_package = "github.com/shirooe/gomf/apps/auth/pkg/api";
+option go_package = "github.com/shirooe/money-flow/apps/auth/pkg/api";
 
 import "google/protobuf/empty.proto";
 
