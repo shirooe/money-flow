@@ -4,7 +4,7 @@
 // - protoc             v5.27.2
 // source: libs/api/account/account.proto
 
-package api
+package grpc
 
 import (
 	grpc "google.golang.org/grpc"

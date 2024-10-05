@@ -5,6 +5,7 @@ import (
 
 	"go.uber.org/fx"
 
+	"github.com/shirooe/money-flow/apps/auth/internal/api"
 	"github.com/shirooe/money-flow/apps/auth/internal/server"
 	"github.com/shirooe/money-flow/libs/config"
 	"github.com/shirooe/money-flow/libs/database/postgres"
@@ -15,6 +16,6 @@ func New() *fx.App {
 	return fx.New(
 		fx.Provide(func() context.Context { return context.Background() }),
 		fx.Provide(config.New, logger.New),
-		fx.Options(postgres.Module(), server.Module()),
+		fx.Options(postgres.Module(), api.Module(), server.Module()),
 	)
 }

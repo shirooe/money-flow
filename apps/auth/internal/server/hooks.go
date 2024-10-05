@@ -8,6 +8,7 @@ import (
 	"github.com/rs/zerolog"
 	"go.uber.org/fx"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func InvokeServer(lc fx.Lifecycle, server *grpc.Server, config Config, log *zerolog.Logger) {
@@ -18,6 +19,8 @@ func InvokeServer(lc fx.Lifecycle, server *grpc.Server, config Config, log *zero
 				log.Error().Msgf("failed to listen %v", err)
 				return err
 			}
+
+			reflection.Register(server)
 
 			go func() {
 				log.Info().Msgf("Starting server on port %d", config.Port)

@@ -1,11 +1,11 @@
 syntax = "proto3";
 
 package auth;
-option go_package = "github.com/shirooe/money-flow/apps/auth/pkg/api";
+option go_package = "github.com/shirooe/money-flow/apps/auth/pkg/grpc";
 
 import "google/protobuf/empty.proto";
 
-service Auth {
+service AuthUnprotected {
   rpc Login(LoginRequest) returns (LoginResponse) {}
   rpc Register(RegisterRequest) returns (RegisterResponse) {}
 }

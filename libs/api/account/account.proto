@@ -1,6 +1,6 @@
 syntax = "proto3";
 
 package account;
-option go_package = "github.com/shirooe/money-flow/apps/account/pkg/api";
+option go_package = "github.com/shirooe/money-flow/apps/account/pkg/grpc";
 
 service Account {}
