@@ -12,9 +12,10 @@ type Option struct {
 	Options []grpc.ServerOption
 }
 
-func ProvideOption() Option {
+func ProvideOption(interceptors []grpc.UnaryServerInterceptor) Option {
 	options := []grpc.ServerOption{
 		grpc.Creds(insecure.NewCredentials()),
+		grpc.ChainUnaryInterceptor(interceptors...),
 	}
 
 	return Option{

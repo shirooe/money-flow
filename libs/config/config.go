@@ -11,6 +11,7 @@ import (
 )
 
 func New() *config.YAML {
+	// TODO: fix this
 	pwd, _ := os.Getwd()
 	root := filepath.Join(pwd, "../..")
 

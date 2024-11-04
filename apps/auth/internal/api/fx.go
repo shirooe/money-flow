@@ -1,15 +1,13 @@
 package api
 
 import (
-	desc "github.com/shirooe/money-flow/apps/auth/pkg/grpc"
+	"github.com/shirooe/money-flow/apps/auth/internal/api/protected"
+	"github.com/shirooe/money-flow/apps/auth/internal/api/unprotected"
 	"go.uber.org/fx"
 )
 
 func Module() fx.Option {
 	return fx.Module("api",
-		fx.Provide(New),
-		fx.Invoke(
-			desc.RegisterAuthUnprotectedServer,
-		),
+		fx.Options(protected.Module(), unprotected.Module()),
 	)
 }
