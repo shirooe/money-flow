@@ -3,9 +3,9 @@ package auth
 import (
 	"context"
 
-	"github.com/shirooe/money-flow/apps/auth/internal/dto"
+	"github.com/shirooe/money-flow/apps/auth/internal/models"
 )
 
-func (s *service) Login(ctx context.Context, data dto.LoginDto) (string, error) {
+func (s *service) Login(ctx context.Context, data models.LoginDto) (string, error) {
 	return "", nil
 }
